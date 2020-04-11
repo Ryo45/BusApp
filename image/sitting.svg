@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34.031" height="88" viewBox="0 0 34.031 88">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1f1f1f;
+      }
+    </style>
+  </defs>
+  <g id="グループ_21" data-name="グループ 21" transform="translate(-7.969 -193)">
+    <path id="パス_5" data-name="パス 5" class="cls-1" d="M11.5,0C17.851,0,23,5.82,23,13S17.851,26,11.5,26,0,20.18,0,13,5.149,0,11.5,0Z" transform="translate(19 193)"/>
+    <rect id="長方形_6" data-name="長方形 6" class="cls-1" width="10" height="38" rx="4" transform="translate(29 219)"/>
+    <rect id="長方形_7" data-name="長方形 7" class="cls-1" width="30" height="11" rx="5" transform="translate(9 246)"/>
+    <rect id="長方形_9" data-name="長方形 9" class="cls-1" width="10" height="35" rx="5" transform="translate(9 246)"/>
+    <rect id="長方形_10" data-name="長方形 10" class="cls-1" width="11" height="35" rx="5" transform="translate(32.718 218.883) rotate(45)"/>
+  </g>
+</svg>

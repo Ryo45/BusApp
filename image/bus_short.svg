@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="293" height="182" viewBox="0 0 293 182">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1f1f1f;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #eee;
+      }
+
+      .cls-3 {
+        stroke: #1f1f1f;
+        stroke-width: 10px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="グループ_33" data-name="グループ 33" transform="translate(-46 -182)">
+    <g id="グループ_32" data-name="グループ 32">
+      <rect id="長方形_1" data-name="長方形 1" class="cls-1" width="293" height="157" rx="10" transform="translate(46 182)"/>
+      <rect id="長方形_2" data-name="長方形 2" class="cls-2" width="275" height="123" rx="10" transform="translate(55 189)"/>
+      <g id="グループ_12" data-name="グループ 12" transform="translate(-352 189)">
+        <g id="楕円形_2" data-name="楕円形 2" class="cls-3" transform="translate(423 125)">
+          <circle class="cls-4" cx="25" cy="25" r="25"/>
+          <circle class="cls-5" cx="25" cy="25" r="20"/>
+        </g>
+        <g id="楕円形_3" data-name="楕円形 3" class="cls-3" transform="translate(617 125)">
+          <circle class="cls-4" cx="25" cy="25" r="25"/>
+          <circle class="cls-5" cx="25" cy="25" r="20"/>
+        </g>
+      </g>
+    </g>
+    <g id="グループ_26" data-name="グループ 26" transform="translate(72 3)">
+      <g id="グループ_20" data-name="グループ 20" transform="translate(-1.574 -3.888)">
+        <rect id="長方形_3" data-name="長方形 3" class="cls-1" width="6" height="53" transform="translate(150.574 254.888)"/>
+        <rect id="長方形_4" data-name="長方形 4" class="cls-1" width="25" height="29" transform="translate(127.574 278.888)"/>
+        <g id="グループ_16" data-name="グループ 16" transform="translate(133.926 285.888)">
+          <rect id="長方形_5" data-name="長方形 5" class="cls-2" width="17" height="22" transform="translate(-0.352)"/>
+        </g>
+      </g>
+      <g id="グループ_22" data-name="グループ 22" transform="translate(43.426 -3.888)">
+        <rect id="長方形_3-2" data-name="長方形 3" class="cls-1" width="6" height="53" transform="translate(150.574 254.888)"/>
+        <rect id="長方形_4-2" data-name="長方形 4" class="cls-1" width="25" height="29" transform="translate(127.574 278.888)"/>
+        <g id="グループ_16-2" data-name="グループ 16" transform="translate(133.926 286.888)">
+          <rect id="長方形_5-2" data-name="長方形 5" class="cls-2" width="17" height="22" transform="translate(-0.352)"/>
+        </g>
+      </g>
+      <g id="グループ_24" data-name="グループ 24" transform="translate(88.426 -3.888)">
+        <rect id="長方形_3-3" data-name="長方形 3" class="cls-1" width="6" height="53" transform="translate(150.574 254.888)"/>
+        <rect id="長方形_4-3" data-name="長方形 4" class="cls-1" width="25" height="29" transform="translate(127.574 278.888)"/>
+        <g id="グループ_16-3" data-name="グループ 16" transform="translate(133.926 286.888)">
+          <rect id="長方形_5-3" data-name="長方形 5" class="cls-2" width="17" height="22" transform="translate(-0.352)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
