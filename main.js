@@ -18,44 +18,16 @@ let app = new Vue({
         stop_now:'技本',
         recieved_data: [] ,
         bus_data:[], /* hour: ,min: ,  crowded:  */
-        schedule:[
-            {
-                hour: '13',
-                min:'45',
-                crowded :'200',
-                status:'満車'
-            },
-            {
-                time:'14:00',
-                crowded : '150',
-                status:'混雑'
-            },
-            {
-                time:'14:15',
-                crowded : '130',
-                status:'混雑'
-            },
-            {
-                time:'14:30',
-                crowded : '80',
-                status:'空き'
-            },
-            {
-                time:'14:45',
-                crowded : '50',
-                status:'空き'
-            },
-            {
-                time:'15:00',
-                crowded : '70',
-                status:'空き'
-            }
-        
-        ],
-        users: []
+       road_show_1: true,
+       road_show_2:false
     },
     created:function(station){
         this.delayFunc_update=_.debounce(this.update_schedule,800);
+        let that=this;
+        this.timer=setInterval(function(){
+            that.road_show_1=!that.road_show_1;
+            that.road_show_2=!that.road_show_2;
+        },500);
     },
     mounted :function(){
         axios.get('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp')
@@ -113,6 +85,10 @@ let app = new Vue({
         get_time_from:function(){
             
             
+        },
+        chage_road_show:function(){
+            this.road_show[0]=!this.road_show[0];
+            this.road_show[1]=!this.road_show[1];
         }
     }
     

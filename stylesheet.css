@@ -1,15 +1,15 @@
+
 *{
   font-family: 'Yu Gothic UI','ＭＳ Ｐ明朝','MS PMincho','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
   color:#EEEEEE;
 }
-
 body{
   background-color: #44A5CB;
   font-size: 18px;
 }
 
 .page_innner{
-  margin: 10px 7.5%
+  margin: 1.5% 7.5%
 }
 
 .contents{
@@ -18,7 +18,7 @@ body{
   /*border :solid 3px #007AB7;
   background-color:#44A5CB ;
   filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.6));*/
-  width:375px;
+  width:100%;
   margin:50px auto;
   padding:30px auto;
 }
@@ -68,7 +68,13 @@ body{
   font-size: 32px;
   color:#E6855E;
   font-weight: bold;
+  text-shadow:0.3px 0.3px 0 #EEEEEE, -0.3px -0.3px 0 #EEEEEE,
+              -0.3px 0.3px 0 #EEEEEE, 0.3px -0.3px 0 #EEEEEE,
+              0.3px 0.3px 0 #EEEEEE,  0 -0.3px 0 #EEEEEE,
+              -0.3px 0 0 #EEEEEE, 0.3px 0 0 #EEEEEE;
 }
+
+
 .bus_crowd_fig{
   display:block;
   position: relative;
@@ -104,6 +110,14 @@ body{
 
 }
 
+.bus_road{
+  display:block;
+  position: relative;
+  margin-left: auto;
+  margin-right:auto;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
 
 .box_situation_now{
     padding: 0.5em 1em;
@@ -145,11 +159,7 @@ body{
     width: 100%;
   }
   
-  table tr{
-    border-bottom: solid 1px #eee;
-    /*cursor: pointer;*/
-  }
-  
+
   table tr:hover{
     background-color: #15658a;
   }
@@ -157,7 +167,7 @@ body{
   table th,table td{
     text-align: center;
     width: 25%;
-    padding: 15px 0;
+    padding: 10px 0;
   }
   
   table .not_num{
@@ -168,6 +178,11 @@ body{
     background-position: left 5px center;
     background-repeat: no-repeat;
     padding-left: 30px;
+  }
+
+  table tr.header{
+    border-bottom: solid 1px #eee;
+
   }
 .container{
     display:flex;
@@ -200,12 +215,13 @@ body{
 .input_form{
   display: flex;
   justify-content: center;
-  font-size: 24px;
-
+  font-size: 30px;
   margin-bottom: 12px;
   margin-left: auto;
   margin-right:auto;
 }
+
+#bus_time
 
 .next_page{
   display: flex;
@@ -213,3 +229,4 @@ body{
   font-size: 20px;
   margin:20px auto;
 }
+

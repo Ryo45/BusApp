@@ -19,23 +19,25 @@
     <div id="app">
         <div class="contents">
             <span class="box-title">次のバス</span>
-           <div class="bus_situation_now">
-            <span class="Num">10 </span>分後に出発  
-          </div>
-          <div class="bus_crowd_fig">
+            <div class="bus_situation_now">
+                <span class="Num">10 </span>分後に出発  
+            </div>
+             <div class="bus_crowd_fig">
 
-            <object id="bus_img" type="image/svg+xml" data="./image/bus.svg" widht="293px" height="216px"></object>
-            <div id="sitting_img">
-              <object id="sitting_specific" v-for= "i in 3"  type="image/svg+xml" data="./image/sitting.svg" height="88px"></object>
-            </div>
-            <div id="standing_img">
-               <object  v-for= "i in 3"  type="image/svg+xml" data="./image/standing.svg" height="107px"></object>
-            </div>
+                <object id="bus_img" type="image/svg+xml" data="./image/bus.svg" widht="293px" height="216px"></object>
+                <div id="sitting_img">
+                    <object id="sitting_specific" v-for= "i in 3"  type="image/svg+xml" data="./image/sitting.svg" height="88px"></object>
+                </div>
+                <div id="standing_img">
+                    <object  v-for= "i in 3"  type="image/svg+xml" data="./image/standing.svg" height="107px"></object>
+                </div>
             <p>混雑率 : <span class="Num">{{ crowded_now }}</span>%</p>
-
-          </div>
+            </div>
+            <object class="bus_road" v-show="road_show_1" type="image/svg+xml" data="./image/romen.svg"  width="293px"></object>
+            <object class="bus_road" v-show="road_show_2" type="image/svg+xml" data="./image/romen2.svg"  width="293px"></object>
+    
         </div>
-        
+
         <div class="contents">
         <div class="input_form">
             <form>
@@ -47,10 +49,10 @@
         </div>   
     <div class="situation_list">
         <table>
-            <tr class="now">
-                <td>{{ input_time }}</td>
-                <td>{{ crowded_now }}%</td>
-                <td>{{ toIcon(crowded_now) }}</td>
+            <tr class="header">
+                <td> 出発時刻</td>
+                <td> 到着時刻</td>
+                <td>混雑予想</td>
             </tr>
             <tr class="specific" v-for="situ in bus_data.body">
                 <td>{{ situ.hour }}:{{ situ.min }}</td>
