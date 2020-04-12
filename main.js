@@ -37,14 +37,14 @@ let app = new Vue({
             }
         })
         .then(response => {
-            this.bus_data=response.data
+            this.bus_data=response.data // .bodyなし
             console.log(this.bus_data)
         })
         .catch(response => console.log(response));
         /*
         axios.get('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp')
         .then(response => {
-            this.bus_data=response.data.body
+            this.bus_data=response.data.body // .bodyあり
             console.log(this.bus_data)
         })
         .catch(response => console.log(response));
