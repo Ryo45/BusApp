@@ -13,6 +13,10 @@ body{
   margin: 1.5% 7.5%
 }
 
+.container{
+  display: block;
+}
+
 .contents{
   position: relative;
   display:block;
@@ -190,12 +194,6 @@ body{
     background-color: #15658a;
   }
 
-
-.container{
-    display:flex;
-    justify-content: center;
-
-}  
 
 
 
