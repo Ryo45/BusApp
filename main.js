@@ -36,8 +36,9 @@ let app = new Vue({
                   console.log(this.bus_data)
               })
               .catch(response => console.log(response));
-        this.time_now.hour=Number(this.bus_data[0].hour);
-        this.time_now.min=Number(this.bus_data[0].min);
+        console.log(this.bus_data.body);
+        this.time_now.hour=Number(this.bus_data.body[0].departure/60);
+        this.time_now.min=Number(this.bus_data.body[0].departure%60);
         },
 
     computed : {
@@ -57,6 +58,12 @@ let app = new Vue({
             axios.get('https://jsonplaceholder.typicode.com/users'+this.station+'/'+this.input_time)
             .then(response => this.recieved_data=response.data)
             .catch(response => console.log(response));
+        },
+        parse_minutes:function(time_minutes){
+            return (time_minutes/60 | 0)+':' +this.zero_padding(time_minutes%60,2);
+        },
+        zero_padding:function(num,length){
+            return ('0000000000' + num).slice(-length);
         },
         onclick_change_stop: function(stop){
             this.stop_now=stop;

@@ -33,35 +33,43 @@
                 </div>
             <p>混雑率 : <span class="Num">{{ crowded_now }}</span>%</p>
             </div>
-            <object class="bus_road" v-show="road_show_1" type="image/svg+xml" data="./image/romen.svg"  width="293px"></object>
-            <object class="bus_road" v-show="road_show_2" type="image/svg+xml" data="./image/romen2.svg"  width="293px"></object>
     
         </div>
 
         <div class="contents">
-        <div class="input_form">
-            <form>
-                <label for="bus_time">
-                    時刻を入力:
-                </label>
-                <input type="time" id="bus_time" v-model="input_time"/>
-            </form>
-        </div>   
-    <div class="situation_list">
-        <table>
-            <tr class="header">
-                <td> 出発時刻</td>
-                <td> 到着時刻</td>
-                <td>混雑予想</td>
-            </tr>
-            <tr class="specific" v-for="situ in bus_data.body">
-                <td>{{ situ.hour }}:{{ situ.min }}</td>
-                <td>{{ situ.crowded }}<span class="not_num">%</span></td>
-                <td>{{ toIcon(situ.crowded) }}  </td>
-            </tr>
-        </table>
-    </div>
-    </div>
+            <span class="box-title">他のバス</span>
+
+            <div class="input_form">
+                <form>
+                    <label for="bus_time">
+                        時刻を入力:
+                    </label>
+                    <input type="time" id="bus_time" v-model="input_time"/>
+                </form>
+            </div>   
+            <div class="situation_list">
+                <table>
+                    <tr class="header">
+                        <td> 出発時刻</td>
+                        <td> 到着時刻</td>
+                        <td>混雑予想</td>
+                    </tr>
+                    <tr class="specific" v-for="situ in bus_data.body">
+                        <td>{{  parse_minutes(situ.departure)  }}</td>
+                        <td>{{ parse_minutes(situ.arrive)}}</td>
+                        <td>{{ toIcon(situ.crowded) }}  </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="input_email">
+                <input v-model="message" placeholder="example@mail.com">
+            </div>
+            <div class="reminder">
+                リマインドする
+            </div>
+        </div>
+
+    
     </div>
     <div class="footer">
         
