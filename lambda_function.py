@@ -9,6 +9,8 @@ def lambda_handler(event, context):
     return {
         'isBase64Encoded': False,
         'statusCode': 200,
-        'headers': {},
+        'headers': {
+            'Access-Control-Allow-Origin': '*'
+        },
         'body': array
     }
