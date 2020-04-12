@@ -18,6 +18,7 @@ body{
 }
 
 .contents{
+  max-width :700px;
   position: relative;
   display:inline-block;
   /*border :solid 3px #007AB7;
@@ -195,11 +196,6 @@ body{
   }
 
 
-.container{
-    display:flex;
-    justify-content: center;
-
-}  
 
 
 
