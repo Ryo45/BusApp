@@ -31,7 +31,11 @@ let app = new Vue({
         },500);
     },
     mounted :function(){
-        axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app')
+        axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
+            params: {
+                func: 'getBusData'
+            }
+        })
         //axios.get('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp')
               .then(response => {
                   this.bus_data=response.data
@@ -102,6 +106,20 @@ let app = new Vue({
         post_reminder:function(mailaddress){
             console.log(mailaddress);
             console.log(this.selected_dep_time);
+            
+            axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
+                params: {
+                    func: 'sendReminder',
+                    mailaddress: mailaddress
+                }
+            })
+            .then(response => {
+                console.log('sendReminder response:');
+                console.log(response);
+            })
+            .catch();
+            
+            
             /*axios.post('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp/sendReminder',{
                 address: mailaddress,
                 time:this.selected_dep_time
