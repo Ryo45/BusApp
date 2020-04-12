@@ -31,6 +31,7 @@ let app = new Vue({
         },500);
     },
     mounted :function(){
+        //axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app')
         axios.get('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp')
               .then(response => {
                   this.bus_data=response.data
