@@ -54,7 +54,7 @@
                         <td> 到着時刻</td>
                         <td>混雑予想</td>
                     </tr>
-                    <tr class="specific" v-for="situ in bus_data.body">
+                    <tr class="item" v-for="(situ,i) in bus_data.body" v-on:click="activate_td(situ.departure)" v-bind:class="(situ.departure === selected_dep_time) ? 'active' : 'deactive'">
                         <td>{{  parse_minutes(situ.departure)  }}</td>
                         <td>{{ parse_minutes(situ.arrive)}}</td>
                         <td>{{ toIcon(situ.crowded) }}  </td>
@@ -62,9 +62,9 @@
                 </table>
             </div>
             <div class="input_email">
-                <input v-model="message" placeholder="example@mail.com">
+                <input v-model="mailaddress" placeholder="example@mail.com">
             </div>
-            <div class="reminder">
+            <div class="reminder" v-on:click="post_reminder(mailaddress)">
                 リマインドする
             </div>
         </div>

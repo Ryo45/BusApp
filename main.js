@@ -7,7 +7,8 @@ let app = new Vue({
         crowded_next : '120',
         input_time: '13:45',
         next_time:'13:45',
-        test_text:'テスト',
+        selected_table_index:1000,
+        selected_dep_time:0,      
         stop_list:[
             {
                 name:'技本'
@@ -55,9 +56,9 @@ let app = new Vue({
 
     methods:{
         update_schedule: function(station){
-            axios.get('https://jsonplaceholder.typicode.com/users'+this.station+'/'+this.input_time)
+        /*    axios.get('https://jsonplaceholder.typicode.com/users'+this.station+'/'+this.input_time)
             .then(response => this.recieved_data=response.data)
-            .catch(response => console.log(response));
+            .catch(response => console.log(response));*/
         },
         parse_minutes:function(time_minutes){
             return (time_minutes/60 | 0)+':' +this.zero_padding(time_minutes%60,2);
@@ -93,10 +94,25 @@ let app = new Vue({
             
             
         },
-        chage_road_show:function(){
-            this.road_show[0]=!this.road_show[0];
-            this.road_show[1]=!this.road_show[1];
+        activate_td:function(time){
+            this.selected_dep_time=time;
+            console.log(time);
+        },
+        post_reminder:function(mailaddress){
+            console.log(mailaddress);
+            console.log(this.selected_dep_time);
+            /*axios.post('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp/sendReminder',{
+                address: mailaddress,
+                time:this.selected_dep_time
+            })
+            .then(function (response){
+                console.log(response);
+            })
+            .catch(function(error){
+                console.log(error);
+            });*/
         }
+
     }
     
 });

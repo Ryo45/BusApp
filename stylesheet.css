@@ -162,8 +162,8 @@ body{
   }
   
 
-  table tr:hover{
-    background-color: #15658a;
+  table tr.item:hover{
+    background-color: #187caa;
   }
   
   table th,table td{
@@ -186,6 +186,11 @@ body{
     border-bottom: solid 1px #eee;
 
   }
+  table tr.item.active{
+    background-color: #15658a;
+  }
+
+
 .container{
     display:flex;
     justify-content: center;
@@ -252,6 +257,14 @@ body{
 
 }
 
+.input_email{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  margin-top:30px;
+  padding-top:12px;
+  font-size: 24px;
+}
 #bus_time{
   color:black;
   font-size: 22px;
