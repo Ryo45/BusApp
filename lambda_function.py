@@ -12,5 +12,5 @@ def lambda_handler(event, context):
         'headers': {
             'Access-Control-Allow-Origin': '*'
         },
-        'body': array
+        'body': json.dumps(array)
     }
