@@ -31,16 +31,16 @@ let app = new Vue({
         },500);
     },
     mounted :function(){
-        //axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app')
-        axios.get('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp')
+        axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app')
+        //axios.get('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp')
               .then(response => {
                   this.bus_data=response.data
                   console.log(this.bus_data)
               })
               .catch(response => console.log(response));
-        console.log(this.bus_data.body);
-        this.time_now.hour=Number(this.bus_data.body[0].departure/60);
-        this.time_now.min=Number(this.bus_data.body[0].departure%60);
+        console.log(this.bus_data);
+        this.time_now.hour=Number(this.bus_data[0].departure/60);
+        this.time_now.min=Number(this.bus_data[0].departure%60);
         },
 
     computed : {

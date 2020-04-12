@@ -57,7 +57,7 @@
                         <td> 到着時刻</td>
                         <td>混雑予想</td>
                     </tr>
-                    <tr class="item" v-for="(situ,i) in bus_data.body" v-on:click="activate_td(situ.departure)" v-bind:class="(situ.departure === selected_dep_time) ? 'active' : 'deactive'">
+                    <tr class="item" v-for="(situ,i) in bus_data" v-on:click="activate_td(situ.departure)" v-bind:class="(situ.departure === selected_dep_time) ? 'active' : 'deactive'">
                         <td>{{  parse_minutes(situ.departure)  }}</td>
                         <td>{{ parse_minutes(situ.arrive)}}</td>
                         <td>{{ toIcon(situ.crowded) }}  </td>
