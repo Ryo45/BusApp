@@ -11,10 +11,12 @@ body{
 
 .page_innner{
   margin: 1.5% 7.5%;
+  
 }
 
 .container{
   display:flex;
+
 }
 
 .contents{

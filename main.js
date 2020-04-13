@@ -8,7 +8,10 @@ let app = new Vue({
         input_time: '13:45',
         next_time:'13:45',
         selected_table_index:1000,
-        selected_dep_time:0,      
+        selected_dep_time:0,
+        isOpen:true,
+        stop_selected:'技本',    
+        show_modal:false,  
         stop_list:[
             {
                 name:'技本'
@@ -16,7 +19,6 @@ let app = new Vue({
             {
                 name:'10号館'
             }],
-        stop_now:'技本',
         recieved_data: [] ,
         bus_data:[], /* hour: ,min: ,  crowded:  */
        road_show_1: true,
@@ -78,14 +80,8 @@ let app = new Vue({
         zero_padding:function(num,length){
             return ('0000000000' + num).slice(-length);
         },
-        onclick_change_stop: function(stop){
-            this.stop_now=stop;
-        },
-        onlick_test: function(){
-            this.test_text='あああ';
-        },
-        onclick_nexthour:function(){
-            this.next_time="1:00";
+        selecting_stop:function(name){
+            this.stop_selected=name;
         },
         toIcon:function(rate){
             if (rate<80)
@@ -108,7 +104,6 @@ let app = new Vue({
         },
         activate_td:function(time){
             this.selected_dep_time=time;
-            console.log(time);
         },
         post_reminder:function(mailaddress){
             console.log(mailaddress);
@@ -125,7 +120,7 @@ let app = new Vue({
                 console.log(response);
             })
             .catch();
-            
+            this.toggle_modal();
             
             /*axios.post('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp/sendReminder',{
                 address: mailaddress,
@@ -137,7 +132,12 @@ let app = new Vue({
             .catch(function(error){
                 console.log(error);
             });*/
+        },
+        toggle_modal:function(){
+            this.show_modal=!this.show_modal;
         }
+
+    
 
     }
     
