@@ -11,14 +11,15 @@
 
     </head>
     <body>
+    <div id="app">
     <div class="page_innner">
-    <header>
-        <div class="header_stop_name">
-            <p>技本</p>
+
+        <header>
+        <div class="header_stop_name" >
+            <p>{{ stop_selected }}</p>
         </div>
 
     </header>
-    <div id="app">
     <div class="container">
         <div class="contents">
             <span class="box-title">次のバス</span>
@@ -67,7 +68,7 @@
             <div class="input_email">
                 <input v-model="mailaddress" placeholder="example@mail.com">
             </div>
-            <div class="reminder" v-on:click="post_reminder(mailaddress)">
+            <div class="reminder" v-on:click="post_reminder(mailaddress)" v-on:click="toggle_modal">
                 リマインドする
             </div>
         </div>
@@ -77,6 +78,13 @@
     <div class="footer">
         
     </div>
+    <transition name="fade">
+    <div id="reminder_confirm" v-show="show_modal" v-on:click="toggle_modal">
+        <div id="reminder_confirm_contents">
+            <p>リマインドを設定しました<br>出発時刻: {{parse_minutes(selected_dep_time)}}</p>
+        </div>
+    </div>
+    </transition> 
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>       
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
