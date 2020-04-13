@@ -35,7 +35,8 @@ let app = new Vue({
     mounted :function(){
         axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
            params: {
-                func: 'getBusData'
+                func: 'getBusData',
+                input_time: this.input_time
             }
         })
         .then(response => {
@@ -70,9 +71,14 @@ let app = new Vue({
 
     methods:{
         update_schedule: function(station){
-        /*    axios.get('https://jsonplaceholder.typicode.com/users'+this.station+'/'+this.input_time)
-            .then(response => this.recieved_data=response.data)
-            .catch(response => console.log(response));*/
+            axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
+                params: {
+                    func: 'getBusData',
+                    input_time: this.input_time
+                }
+            })
+            .then(response => { this.bus_data=response.data })
+            .catch(response => console.log(response));
         },
         parse_minutes:function(time_minutes){
             return (time_minutes/60 | 0)+':' +this.zero_padding(time_minutes%60,2);
