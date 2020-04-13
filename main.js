@@ -7,7 +7,11 @@ let app = new Vue({
         crowded_next : '120',
         input_time: '13:45',
         next_time:'13:45',
-        test_text:'テスト',
+        selected_table_index:1000,
+        selected_dep_time:0,
+        isOpen:true,
+        stop_selected:'技本',    
+        show_modal:false,  
         stop_list:[
             {
                 name:'技本'
@@ -15,7 +19,6 @@ let app = new Vue({
             {
                 name:'10号館'
             }],
-        stop_now:'技本',
         recieved_data: [] ,
         bus_data:[], /* hour: ,min: ,  crowded:  */
        road_show_1: true,
@@ -30,16 +33,29 @@ let app = new Vue({
         },500);
     },
     mounted :function(){
+        axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
+           params: {
+                func: 'getBusData',
+                input_time: this.input_time
+            }
+        })
+        .then(response => {
+            this.bus_data=response.data // .bodyなし
+            console.log(this.bus_data)
+        })
+        .catch(response => console.log(response));
+        /*
         axios.get('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp')
-              .then(response => {
-                  this.bus_data=response.data
-                  console.log(this.bus_data)
-              })
-              .catch(response => console.log(response));
-        console.log(this.bus_data.body);
-        this.time_now.hour=Number(this.bus_data.body[0].departure/60);
-        this.time_now.min=Number(this.bus_data.body[0].departure%60);
-        },
+        .then(response => {
+            this.bus_data=response.data.body // .bodyあり
+            console.log(this.bus_data)
+        })
+        .catch(response => console.log(response));
+        */
+        console.log(this.bus_data);
+        this.time_now.hour=Number(this.bus_data[0].departure/60);
+        this.time_now.min=Number(this.bus_data[0].departure%60);
+    },
 
     computed : {
         localEmail: function(){
@@ -55,8 +71,13 @@ let app = new Vue({
 
     methods:{
         update_schedule: function(station){
-            axios.get('https://jsonplaceholder.typicode.com/users'+this.station+'/'+this.input_time)
-            .then(response => this.recieved_data=response.data)
+            axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
+                params: {
+                    func: 'getBusData',
+                    input_time: this.input_time
+                }
+            })
+            .then(response => { this.bus_data=response.data })
             .catch(response => console.log(response));
         },
         parse_minutes:function(time_minutes){
@@ -65,14 +86,8 @@ let app = new Vue({
         zero_padding:function(num,length){
             return ('0000000000' + num).slice(-length);
         },
-        onclick_change_stop: function(stop){
-            this.stop_now=stop;
-        },
-        onlick_test: function(){
-            this.test_text='あああ';
-        },
-        onclick_nexthour:function(){
-            this.next_time="1:00";
+        selecting_stop:function(name){
+            this.stop_selected=name;
         },
         toIcon:function(rate){
             if (rate<80)
@@ -93,10 +108,43 @@ let app = new Vue({
             
             
         },
-        chage_road_show:function(){
-            this.road_show[0]=!this.road_show[0];
-            this.road_show[1]=!this.road_show[1];
+        activate_td:function(time){
+            this.selected_dep_time=time;
+        },
+        post_reminder:function(mailaddress){
+            console.log(mailaddress);
+            console.log(this.selected_dep_time);
+            
+            axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
+                params: {
+                    func: 'sendReminder',
+                    mailaddress: mailaddress
+                }
+            })
+            .then(response => {
+                console.log('sendReminder response:');
+                console.log(response);
+            })
+            .catch();
+            this.toggle_modal();
+            
+            /*axios.post('https://3435cwmvwf.execute-api.ap-northeast-1.amazonaws.com/BusApp/sendReminder',{
+                address: mailaddress,
+                time:this.selected_dep_time
+            })
+            .then(function (response){
+                console.log(response);
+            })
+            .catch(function(error){
+                console.log(error);
+            });*/
+        },
+        toggle_modal:function(){
+            this.show_modal=!this.show_modal;
         }
+
+    
+
     }
     
 });
