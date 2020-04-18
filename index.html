@@ -1,96 +1,92 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <head>
-        <title>構内バスアプリ</title>
-        <link rel="icon" type="image/x-icon" href="./favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-        <link rel="stylesheet" type="text/css" media="(max-width:800px)"  href="stylesheet_sp.css">
-        <link rel="stylesheet" type="text/css" media="(min-width:801px)"  href="stylesheet_pc.css">
+<head>
+    <title>構内バスアプリ</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="stylesheet" type="text/css" media="(max-width:800px)" href="stylesheet_sp.css">
+    <link rel="stylesheet" type="text/css" media="(min-width:801px)" href="stylesheet_pc.css">
+</head>
 
-
-    </head>
-    <body>
+<body>
     <div id="app">
-    <div class="page_innner">
-
-        <header>
-        <div class="header_stop_name" >
-            <p>{{ stop_selected }}</p>
-        </div>
-
-    </header>
-    <div class="container">
-        <div class="contents">
-            <span class="box-title">次のバス</span>
-            <div class="bus_situation_now">
-                <span class="Num">10 </span>分後に出発  
-            </div>
-             <div class="bus_crowd_fig">
-
-                <object id="bus_img" type="image/svg+xml" data="./image/bus.svg" width="293px" height="216px"></object>
-                <div id="sitting_img">
-                    <object id="sitting_specific" v-for= "i in 3"  type="image/svg+xml" data="./image/sitting.svg" height="88px"></object>
+        <div class="page_innner">
+            <header>
+                <div class="header_stop_name">
+                    <p>{{ stop_selected }}</p>
                 </div>
-                <div id="standing_img">
-                    <object  v-for= "i in 3"  type="image/svg+xml" data="./image/standing.svg" height="107px"></object>
+            </header>
+            <div class="container">
+                <div class="contents">
+                    <span class="box-title">次のバス</span>
+                    <div class="bus_situation_now">
+                        <span class="Num">10 </span>分後に出発
+                    </div>
+                    <div class="bus_crowd_fig">
+                        <object id="bus_img" type="image/svg+xml" data="./image/bus.svg" width="293px"
+                            height="216px"></object>
+                        <div id="sitting_img">
+                            <object id="sitting_specific" v-for="i in 3" type="image/svg+xml" data="./image/sitting.svg"
+                                height="88px"></object>
+                        </div>
+                        <div id="standing_img">
+                            <object v-for="i in 3" type="image/svg+xml" data="./image/standing.svg"
+                                height="107px"></object>
+                        </div>
+                        <p>混雑率 : <span class="Num">{{ crowded_now }}</span>%</p>
+                    </div>
                 </div>
-            <p>混雑率 : <span class="Num">{{ crowded_now }}</span>%</p>
-            </div>
-    
-        </div>
-
-        <div class="contents">
-            <span class="box-title">他のバス</span>
-
-            <div class="input_form">
-                <form>
-                    <label for="bus_time">
-                        時刻を入力:
-                    </label>
-                    <input type="time" id="bus_time" v-model="input_time"/>
-                </form>
-            </div>   
-            <div class="situation_list">
-                <table>
-                    <tr class="header">
-                        <td> 出発時刻</td>
-                        <td> 到着時刻</td>
-                        <td>混雑予想</td>
-                    </tr>
-                    <tr class="item" v-for="(situ,i) in bus_data" v-on:click="activate_td(situ.departure)" v-bind:class="(situ.departure === selected_dep_time) ? 'active' : 'deactive'">
-                        <td>{{  parse_minutes(situ.departure)  }}</td>
-                        <td>{{ parse_minutes(situ.arrive)}}</td>
-                        <td>{{ toIcon(situ.crowded) }}  </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="input_email">
-                <input v-model="mailaddress" placeholder="example@mail.com">
-            </div>
-            <div class="reminder" v-on:click="post_reminder(mailaddress)" v-on:click="toggle_modal">
-                リマインドする
+                <div class="contents">
+                    <span class="box-title">他のバス</span>
+                    <div class="input_form">
+                        <form>
+                            <label for="bus_time">
+                                時刻を入力:
+                            </label>
+                            <input type="time" id="bus_time" v-model="input_time" />
+                        </form>
+                    </div>
+                    <div class="situation_list">
+                        <table>
+                            <tr class="header">
+                                <td> 出発時刻</td>
+                                <td> 到着時刻</td>
+                                <td>混雑予想</td>
+                            </tr>
+                            <tr class="item" v-for="(situ,i) in bus_data" v-on:click="activate_td(situ.departure)"
+                                v-bind:class="(situ.departure === selected_dep_time) ? 'active' : 'deactive'">
+                                <td>{{  parse_minutes(situ.departure)  }}</td>
+                                <td>{{ parse_minutes(situ.arrive)}}</td>
+                                <td>{{ toIcon(situ.crowded) }} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="input_email">
+                        <input v-model="mailaddress" placeholder="example@mail.com">
+                    </div>
+                    <div class="reminder" v-on:click="post_reminder(mailaddress)" v-on:click="toggle_modal">
+                        リマインドする
+                    </div>
+                </div>
             </div>
         </div>
-
-    </div>
-    </div>
-    <div class="footer">
-        
-    </div>
-    <transition name="fade">
-    <div id="reminder_confirm" v-show="show_modal" v-on:click="toggle_modal">
-        <div id="reminder_confirm_contents">
-            <p>リマインドを設定しました<br>出発時刻: {{parse_minutes(selected_dep_time)}}</p>
+        <div class="footer">
         </div>
+        <transition name="fade">
+            <div id="reminder_confirm" v-show="show_modal" v-on:click="toggle_modal">
+                <div id="reminder_confirm_contents">
+                    <p>リマインドを設定しました<br>出発時刻: {{parse_minutes(selected_dep_time)}}</p>
+                </div>
+            </div>
+        </transition>
     </div>
-    </transition> 
-    </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>       
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
     <script src="main.js"></script>
-    </body>
+</body>
+
 </html>
