@@ -5,10 +5,10 @@
 
 <head>
     <title>構内バスアプリ</title>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="stylesheet" type="text/css" media="(max-width:800px)" href="stylesheet_sp.css">
-    <link rel="stylesheet" type="text/css" media="(min-width:801px)" href="stylesheet_pc.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="stylesheet" type="text/css" media="(max-width:800px)" href="css/stylesheet_sp.css">
+    <link rel="stylesheet" type="text/css" media="(min-width:801px)" href="css/stylesheet_pc.css">
 </head>
 
 <body>
@@ -26,15 +26,14 @@
                         <span class="Num">10 </span>分後に出発
                     </div>
                     <div class="bus_crowd_fig">
-                        <object id="bus_img" type="image/svg+xml" data="./image/bus.svg" width="293px"
+                        <object id="bus_img" type="image/svg+xml" data="img/bus.svg" width="293px"
                             height="216px"></object>
                         <div id="sitting_img">
-                            <object id="sitting_specific" v-for="i in 3" type="image/svg+xml" data="./image/sitting.svg"
+                            <object id="sitting_specific" v-for="i in 3" type="image/svg+xml" data="img/sitting.svg"
                                 height="88px"></object>
                         </div>
                         <div id="standing_img">
-                            <object v-for="i in 3" type="image/svg+xml" data="./image/standing.svg"
-                                height="107px"></object>
+                            <object v-for="i in 3" type="image/svg+xml" data="img/standing.svg" height="107px"></object>
                         </div>
                         <p>混雑率 : <span class="Num">{{ crowded_now }}</span>%</p>
                     </div>
@@ -86,7 +85,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
