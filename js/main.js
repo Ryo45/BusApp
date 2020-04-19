@@ -14,10 +14,18 @@ let app = new Vue({
         show_modal: false,
         stop_list: [
             {
-                name: '技本'
+                name: '技本',
+                coords:{
+                    lat:35.055519,
+                    lng:137.160003
+                }
             },
             {
-                name: '10号館'
+                name: '10号館',
+                coords:{
+                    lat:35.054066,
+                    lng:137.165388
+                }
             }],
         recieved_data: [],
         bus_data: [], /* hour: ,min: ,  crowded:  */
@@ -31,6 +39,42 @@ let app = new Vue({
             that.road_show_1 = !that.road_show_1;
             that.road_show_2 = !that.road_show_2;
         }, 500);
+        if (navigator.geolocation) {
+            let _this=this;
+            navigator.geolocation.getCurrentPosition(
+              function(position){
+                let coords = position.coords;
+                // 緯度経度だけ取得
+                _this.lat = coords.latitude;
+                _this.lng = coords.longitude;
+                _this.accu=coords.accuracy;
+
+                let min_dist=1000000000;
+                for  (let stop of _this.stop_list){
+                    console.log(stop);
+                    console.log(min_dist);
+                    console.log(stop.coords.lat)
+                    const dist=_this.sphericalTrigonometry(stop.coords.lat,stop.coords.lng,_this.lat,_this.lng)
+                    console.log(dist);
+
+                    if(min_dist>dist)
+                    {
+                        min_dist=dist;
+                        _this.stop_selected=stop.name;
+                    }
+                    console.log(_this.stop_selected);
+
+                }
+   
+                
+              },
+              function(error) {
+                // エラー処理を書く
+              }
+            );
+          } else {
+            // エラー処理を書く
+          }        
     },
     mounted: function () {
         axios.get('https://m3e1tfriu4.execute-api.ap-northeast-1.amazonaws.com/BusApp/app', {
@@ -134,6 +178,23 @@ let app = new Vue({
         },
         toggle_modal: function () {
             this.show_modal = !this.show_modal;
+        },
+        sphericalTrigonometry:function(lat1, lng1, lat2, lng2) {
+            // 赤道半径
+            const R = 6378137.0;
+        
+            function rad(deg) {
+                return deg * Math.PI / 180;
+            }
+        
+            return R *
+                Math.acos(
+                    Math.cos(rad(lat1)) *
+                    Math.cos(rad(lat2)) *
+                    Math.cos(rad(lng2) - rad(lng1)) +
+                    Math.sin(rad(lat1)) *
+                    Math.sin(rad(lat2))
+                );
         }
     }
 });
